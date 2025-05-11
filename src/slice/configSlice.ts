@@ -1,15 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-interface Category {
-  id: number;
-  name: string;
-}
-
-interface ConfigState {
-  trivia_categories: Category[];
-  isLoading: boolean;
-  error: string | null;
-}
+import { ConfigState } from "./configSliceType";
 
 const initialState: ConfigState = {
   trivia_categories: [
@@ -36,7 +26,7 @@ export const getCategoryThunk = createAsyncThunk(
 
 const configSlice = createSlice({
   name: 'configMenu',
-  initialState, // Здесь исправлено - используется правильное свойство
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
