@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ConfigState } from "./configSliceType";
+import { ConfigState } from "./configSliceInitType";
 
 const initialState: ConfigState = {
   trivia_categories: [
@@ -24,8 +24,8 @@ export const getCategoryThunk = createAsyncThunk(
   }
 );
 
-const configSlice = createSlice({
-  name: 'configMenu',
+const configSliceInit = createSlice({
+  name: 'configMenuInit',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -45,4 +45,4 @@ const configSlice = createSlice({
   }
 });
 
-export default configSlice.reducer;
+export default configSliceInit.reducer;

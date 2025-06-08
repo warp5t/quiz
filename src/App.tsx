@@ -1,17 +1,20 @@
-// import { StartScreen } from './components/selectScreen/SelectScreen';
-// import { CategoryList } from './components/selectScreen/SelectScreen';
-// import { QuestionForm } from './components/selectScreen/QuestionForm';
-import { ConfigScreen } from './screen/configScreen/ConfigScreen';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
+import { routes } from './routes/routes';
 import './App.css';
 
-function App() {
+function AppRoutes() {
+  const element = useRoutes(routes);
+  return element;
+}
+
+export function App() {
   return (
     <div>
-      <ConfigScreen />
-      {/* <QuestionForm /> */}
-      {/* <CategoryList /> */}
+      <BrowserRouter>
+       <AppRoutes />
+      </BrowserRouter>
     </div>
   );
 }
 
-export default App;
+
