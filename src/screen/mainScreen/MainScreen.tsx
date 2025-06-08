@@ -7,7 +7,7 @@ import { sendAnswer } from "../../slice/progressSlice/progressSlice";
 
 export const MainScreen = () => {
   const stateConfigQuiz = useSelector((state:RootState) => state.configSliceStart.results);
-  const state = useSelector((state: RootState) => state.)
+  // const state = useSelector((state: RootState) => state.)
   const dispatch = useDispatch<AppDispatch>();
   // const ammountQuestion = stateConfigQuiz.length;
   let index = 0;
