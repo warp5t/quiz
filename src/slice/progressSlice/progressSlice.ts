@@ -23,7 +23,7 @@ const progressSlice = createSlice({
   initialState,
   reducers: {
     sendAnswer: (state, action) => {
-      return { ...state, ...action.payload }
+      state.gameType.question_stat.push(action.payload);
     }
   }
 });

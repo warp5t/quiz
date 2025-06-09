@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import { RootState } from "../../store/store"
 import { AppDispatch } from "../../store/store";
 import { sendAnswer } from "../../slice/progressSlice/progressSlice";
+import { useMemo } from "react";
 
 
 export const MainScreen = () => {
   const stateConfigQuiz = useSelector((state:RootState) => state.configSliceStart.results);
-  // const state = useSelector((state: RootState) => state.)
+  const stateProgress = useSelector((state: RootState) => state.configSliceProgress);
   const dispatch = useDispatch<AppDispatch>();
   // const ammountQuestion = stateConfigQuiz.length;
   let index = 0;
@@ -30,9 +31,20 @@ export const MainScreen = () => {
     }));
   }
 
+  const answerChecking = (answer: string) => {
+    const correctAnswer = stateConfigQuiz[index].correct_answer;
+    if (correctAnswer === answer) {
+      console.log('right answer');
+    } else {
+      console.log('wrong answer');
+    }
+  };
+
   if (type === 'multiple') {
-    const arrQuest = [...stateConfigQuiz[index].incorrect_answers, stateConfigQuiz[index].correct_answer];
-    const arrShuffled = [...arrQuest].sort(() => Math.random() - 0.5);
+    const memoQuestArr = useMemo(() => {
+      const arrQuest = [...stateConfigQuiz[index].incorrect_answers, stateConfigQuiz[index].correct_answer];
+      return [...arrQuest].sort(() => Math.random() - 0.5);
+    }, [index]);
 
     return (
       <div>
@@ -40,13 +52,19 @@ export const MainScreen = () => {
         <p>Difficulty: {stateConfigQuiz[index].difficulty}</p>
         <p>{decodeEntities(stateConfigQuiz[index].question)}</p>
          <div>
-          {arrShuffled.map((answer) => (
-            <button key={answer} onClick={() => handleAnswer(answer)}>
+          {memoQuestArr.map((answer) => (
+            <button key={answer} onClick={() => {
+              handleAnswer(answer)
+              answerChecking(answer)
+              }}>
               {decodeEntities(answer)}
             </button>
           ))}
         </div>
-        <button onClick={() => {console.log('stateConfigQuiz: ',stateConfigQuiz)}}>LOG</button>
+        <button onClick={() => {
+          console.log('stateConfigQuiz: ',stateConfigQuiz)
+          console.log('stateProgress: ', stateProgress)
+          }}>LOG</button>
       </div>
     )
   } else if (type === 'boolean') {
@@ -59,7 +77,10 @@ export const MainScreen = () => {
           <button onClick={() => {}}>True</button>
           <button onClick={() => {}}>False</button>
         </div>
-        <button onClick={() => {console.log('stateConfigQuiz: ',stateConfigQuiz)}}>LOG</button>
+         <button onClick={() => {
+          console.log('stateConfigQuiz: ',stateConfigQuiz)
+          console.log('stateProgress: ', stateProgress)
+          }}>LOG</button>
       </div>
     )
   }
