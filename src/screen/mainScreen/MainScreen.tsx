@@ -15,7 +15,6 @@ export default () => {
   const stateProgress = useSelector((state: RootState) => state.configSliceProgress);
   const dispatch = useDispatch<AppDispatch>();
   const ammountQuestion = stateConfigQuiz.length;
-
   const type = stateConfigQuiz[index].type;
 
   const decodeEntities = (text: string) => {
@@ -61,8 +60,8 @@ export default () => {
         <div>
           {jumbleQuest.map((answer) => (
             <button key={answer} onClick={() => {
-              handleAnswer(answer);
-              answerChecking(answer);
+              handleAnswer(answer)
+              answerChecking(answer)
             } }>
               {decodeEntities(answer)}
             </button>
@@ -76,7 +75,7 @@ export default () => {
         } }>LOG</button>
         <WinAnimation  isVisible={isVisible} setIsVisible={winChange}/>
         {isVisible && <Confetti />}
-        </div>
+      </div>
     );
   } else if (type === 'boolean') {
     return (
@@ -85,13 +84,21 @@ export default () => {
         <p>Difficulty: {stateConfigQuiz[index].difficulty}</p>
         <p>{decodeEntities(stateConfigQuiz[index].question)}</p>
         <div>
-          <button onClick={() => { } }>True</button>
-          <button onClick={() => { } }>False</button>
+          <button onClick={() => {
+            handleAnswer('True')
+            answerChecking('True')
+              }}>True</button>
+          <button onClick={() => {
+            handleAnswer('False')
+            answerChecking('False')
+          }}>False</button>
         </div>
         <button onClick={() => {
           console.log('stateConfigQuiz: ', stateConfigQuiz);
           console.log('stateProgress: ', stateProgress);
         } }>LOG</button>
+        <WinAnimation  isVisible={isVisible} setIsVisible={winChange}/>
+        {isVisible && <Confetti />}
       </div>
     );
   }
