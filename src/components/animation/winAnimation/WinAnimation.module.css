@@ -1,0 +1,21 @@
+.winAnimation {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.winAnimation__content {
+  background-color: #ffffff;
+  color: #22c55e; /* зелёный цвет */
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-align: center;
+}
