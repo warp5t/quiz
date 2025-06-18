@@ -7,6 +7,7 @@ import { Category } from "../../slice/initialSlice/configSliceInitType"
 import { QuizApiParamsRequest } from "../../slice/startSlice/configStartSliceType"
 import { getStartQuest } from "../../slice/startSlice/configSliceStart"
 import { useNavigate } from "react-router-dom"
+import { setTime } from "../../slice/startSlice/configSliceStart"
 
 export const ConfigScreen = () => {
   const categoryQuest: Category[] = useSelector((state: RootState) => state.configSliceInitial.trivia_categories);
@@ -25,7 +26,6 @@ export const ConfigScreen = () => {
       category: categoryRef.current?.value !== "any" ? Number(categoryRef.current?.value) : undefined,
       difficulty: difficultyRef.current?.value !== "any" ? difficultyRef.current?.value : undefined,
       type: typeRef.current?.value !== "any" ? typeRef.current?.value : undefined,
-      // time: timeRef.current?.value, // Remove if not used in API call
     };
 
     const filteredParams = Object.fromEntries(
@@ -33,6 +33,10 @@ export const ConfigScreen = () => {
     ) as QuizApiParamsRequest;
 
     dispatch(getStartQuest(filteredParams));
+    if (timeRef.current) {
+      const selectedTime = Number(timeRef.current.value) * 60;
+      dispatch(setTime(selectedTime));
+    }
   };
 
   const toMainNavigate = () => {
@@ -78,10 +82,10 @@ export const ConfigScreen = () => {
       </select>
 
       <h3>Time</h3>
-      <select ref={timeRef} defaultValue="5">
-        <option value="1">1 Minute</option>
-        <option value="2">2 Minutes</option>
-        <option value="5">5 Minutes</option>
+      <select ref={timeRef} defaultValue={5}>
+        <option value={1}>1 Minute</option>
+        <option value={2}>2 Minutes</option>
+        <option value={5}>5 Minutes</option>
       </select>
 
       <button onClick={() => {

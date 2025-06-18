@@ -11,7 +11,7 @@ export function App() {
   return (
     <div>
       <BrowserRouter>
-       <AppRoutes />
+        <AppRoutes />
       </BrowserRouter>
     </div>
   );

@@ -19,4 +19,5 @@ export interface QuizState {
   results: Question[];
   isLoading: boolean;
   error: string | null;
+  time: number;
 }

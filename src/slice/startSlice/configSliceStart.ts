@@ -1,10 +1,11 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { QuizApiParamsRequest, QuizState } from "./configStartSliceType";
 
 const initialState: QuizState = {
   isLoading: false,
   error: null,
   response_code: 0,
+  time: 0,
   results: [
     {
       type: "multiple",
@@ -24,10 +25,10 @@ const initialState: QuizState = {
 export const getStartQuest = createAsyncThunk<QuizState, QuizApiParamsRequest, { rejectValue: string }>(
   'initStartQuest',
   async(params,{ rejectWithValue} ) => {
-  const { amount = 10, category, difficulty, type } = params;
+  const { amount: ammount = 10, category, difficulty, type } = params;
 
     const url = new URL('https://opentdb.com/api.php');
-    url.searchParams.append('amount', amount.toString());
+    url.searchParams.append('amount', ammount.toString());
     if (category) url.searchParams.append('category', category.toString());
     if (difficulty) url.searchParams.append('difficulty', difficulty);
     if (type) url.searchParams.append('type', type);
@@ -52,7 +53,11 @@ export const getStartQuest = createAsyncThunk<QuizState, QuizApiParamsRequest, {
 const configSliceInit = createSlice({
   name:'configStart',
   initialState,
-  reducers: {},
+  reducers: {
+    setTime: (state, action: PayloadAction<number>) => {
+      state.time = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
     .addCase(getStartQuest.pending, (state) => {
@@ -72,4 +77,5 @@ const configSliceInit = createSlice({
   }
 });
 
+  export const { setTime } = configSliceInit.actions;
   export default configSliceInit.reducer;
