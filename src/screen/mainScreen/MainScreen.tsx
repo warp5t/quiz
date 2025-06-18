@@ -8,8 +8,11 @@ import { useState, useEffect, useMemo } from 'react';
 import { WinAnimation } from '../../components/animation/winAnimation/WinAnimation';
 import { Confetti } from '../../components/animation/confetti/Confetti';
 
+import { ModalEndQuiz } from '../../components/modal/endQuiz';
+
 export const MainScreen = () => {
   const [isVisible, setIsVisibleC] = useState(false);
+  const [isModal, setIsModal] = useState(false);
   const [index, setIndex] = useState(0);
   const stateConfigQuiz = useSelector((state: RootState) => state.configSliceStart.results);
   const stateProgress = useSelector((state: RootState) => state.configSliceProgress);
@@ -113,12 +116,14 @@ export const MainScreen = () => {
             console.log('stateProgress: ', stateProgress);
             console.log('index: ', index);
             console.log('time: ', time);
+            setIsModal((isModal) => !isModal)
           }}
         >
           End Quiz
         </button>
         <WinAnimation isVisible={isVisible} setIsVisible={winChange} />
         {isVisible && <Confetti />}
+        {isModal && <ModalEndQuiz setIsModal={setIsModal} isModal={false} />}
       </div>
     );
   } else if (type === 'boolean') {

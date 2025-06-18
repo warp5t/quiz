@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 
 interface ModalEndQuizProps {
+  isModal: boolean;
   setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
