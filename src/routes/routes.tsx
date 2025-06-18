@@ -1,6 +1,6 @@
-import { ConfigScreen } from "../screen/configScreen/ConfigScreen";
-import { MainScreen } from "../screen/mainScreen/MainScreen";
-import { RouteObject } from 'react-router-dom'
+import { ConfigScreen } from '../screen/configScreen/ConfigScreen';
+import { MainScreen } from '../screen/mainScreen/MainScreen';
+import { RouteObject } from 'react-router-dom';
 
 export const routes: RouteObject[] = [
   {
@@ -9,6 +9,6 @@ export const routes: RouteObject[] = [
   },
   {
     path: '/game',
-    element: <MainScreen />
-  }
-]
+    element: <MainScreen />,
+  },
+];

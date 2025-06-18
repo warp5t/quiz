@@ -1,13 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit'
-import configCategoryReducer from '../slice/initialSlice/configSliceInit'
-import configStartReducer from '../slice/startSlice/configSliceStart'
-import configProgressSlice from '../slice/progressSlice/progressSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import configCategoryReducer from '../slice/initialSlice/configSliceInit';
+import configStartReducer from '../slice/startSlice/configSliceStart';
+import configProgressSlice from '../slice/progressSlice/progressSlice';
 
 const rootReducer = {
   configSliceInitial: configCategoryReducer,
   configSliceStart: configStartReducer,
-  configSliceProgress: configProgressSlice
-}
+  configSliceProgress: configProgressSlice,
+};
 
 export const store = configureStore({
   reducer: rootReducer,

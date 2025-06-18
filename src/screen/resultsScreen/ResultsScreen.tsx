@@ -1,9 +1,10 @@
-
 export const ResultsScreen = () => {
   return (
     <div>
       <h4>Thank you for completing this quiz. Here are your results</h4>
-      <div>You answered {} out of {} questions correctly”</div>
+      <div>
+        You answered {} out of {} questions correctly”
+      </div>
       <div>
         <p>Type: {}</p>
         <p>Category: {} </p>

@@ -1,28 +1,25 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ConfigState } from "./configSliceInitType";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { ConfigState } from './configSliceInitType';
 
 const initialState: ConfigState = {
   trivia_categories: [
     {
       id: 9,
-      name: 'General Knowledge'
+      name: 'General Knowledge',
     },
     {
       id: 10,
-      name: 'Entertainment: Books'
-    }
+      name: 'Entertainment: Books',
+    },
   ],
   isLoading: false,
-  error: null
+  error: null,
 };
 
-export const getCategoryThunk = createAsyncThunk(
-  'configMenu/fetchCategories',
-  async () => {
-    const response = await fetch('https://opentdb.com/api_category.php');
-    return await response.json();
-  }
-);
+export const getCategoryThunk = createAsyncThunk('configMenu/fetchCategories', async () => {
+  const response = await fetch('https://opentdb.com/api_category.php');
+  return await response.json();
+});
 
 const configSliceInit = createSlice({
   name: 'configMenuInit',
@@ -42,7 +39,7 @@ const configSliceInit = createSlice({
         state.isLoading = false;
         state.error = action.error.message || 'Failed to fetch categories';
       });
-  }
+  },
 });
 
 export default configSliceInit.reducer;

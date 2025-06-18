@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const questParams = {
   categoryName: '',
@@ -8,15 +8,15 @@ const questParams = {
   difficulty: '',
   answer_player: '',
   correct_answer: '',
-}
+};
 
 const initialState = {
   gameType: {
     victory: 0,
     lose: 0,
-    question_stat: [questParams]
-  }
-}
+    question_stat: [questParams],
+  },
+};
 
 const progressSlice = createSlice({
   name: 'progress',
@@ -24,9 +24,9 @@ const progressSlice = createSlice({
   reducers: {
     sendAnswer: (state, action) => {
       state.gameType.question_stat.push(action.payload);
-    }
-  }
+    },
+  },
 });
 
-export const {sendAnswer} = progressSlice.actions;
-export default progressSlice.reducer
+export const { sendAnswer } = progressSlice.actions;
+export default progressSlice.reducer;

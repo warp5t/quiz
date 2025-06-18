@@ -13,7 +13,9 @@ export const WinAnimation: React.FC<WinAnimationProps> = ({ isVisible, setIsVisi
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          onClick={() => {setIsVisible(false)}}
+          onClick={() => {
+            setIsVisible(false);
+          }}
         >
           <motion.div
             className={styles.winAnimation_content}

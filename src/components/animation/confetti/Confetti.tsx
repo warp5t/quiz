@@ -33,7 +33,7 @@ export const Confetti = () => {
           transition={{
             duration: piece.duration,
             delay: piece.delay,
-            ease: "easeOut",
+            ease: 'easeOut',
           }}
           className={styles.piece}
           style={{
