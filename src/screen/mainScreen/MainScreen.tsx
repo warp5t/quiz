@@ -112,7 +112,7 @@ useEffect(() => {
         <p>Question {index + 1} out of {ammountQuestion}</p>
         <h4>{decodeEntities(stateConfigQuiz[index].category)}</h4>
         <p>Difficulty: {stateConfigQuiz[index].difficulty}</p>
-        <p>{String(minutes).padStart(2, '0')} : {String(seconds).padStart(2, '0')}</p>
+        <p>{minutes} : {String(seconds).padStart(2, '0')}</p>
         <p>{decodeEntities(stateConfigQuiz[index].question)}</p>
         <div>
           <button onClick={() => {
